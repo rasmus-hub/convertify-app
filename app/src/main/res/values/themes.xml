@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Convertify" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+
+        <item name="android:fontFamily">@font/inter_variable_font</item>
+    </style>
+
+    <style name="Theme.Convertify" parent="Base.Theme.Convertify" />
+</resources>

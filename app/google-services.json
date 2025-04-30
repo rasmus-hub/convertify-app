@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "935716573598",
+    "project_id": "convertify-9b43a",
+    "storage_bucket": "convertify-9b43a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935716573598:android:4e2d5eef61717df69e868f",
+        "android_client_info": {
+          "package_name": "com.instamedia.convertify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaeHk4J6qvpUCqNmrStFV-tWPfpeC1fwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
