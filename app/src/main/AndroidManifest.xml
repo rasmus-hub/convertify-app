@@ -13,6 +13,18 @@
         android:theme="@style/Theme.Convertify"
         tools:targetApi="31">
         <activity
+            android:name=".ConvertFacebookActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConvertInstagramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConvertTiktokActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConvertYoutubeActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity
@@ -27,6 +39,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1036788589979036~5332599561" />
     </application>
 
 </manifest>
