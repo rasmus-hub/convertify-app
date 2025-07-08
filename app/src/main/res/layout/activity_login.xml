@@ -34,11 +34,13 @@
         android:layout_marginTop="40dp"/>
 
     <EditText
+        android:id="@+id/input_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your email address"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="40px"
+        android:inputType="textEmailAddress"
         android:padding="12dp"
         android:background="@drawable/input_bg"
         android:layout_marginTop="5dp"
@@ -55,11 +57,13 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
+        android:id="@+id/input_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your password"
         android:textColorHint="@android:color/darker_gray"
         android:textSize="40px"
+        android:inputType="textPassword"
         android:padding="12dp"
         android:background="@drawable/input_bg"
         android:layout_marginTop="5dp"
@@ -116,15 +120,5 @@
         app:backgroundTint="@null"
         android:background="@drawable/options_register_button"
         android:layout_marginTop="10dp"/>
-
-    <Button
-        android:layout_width="1.5in"
-        android:layout_height="40dp"
-        android:text="Continue with Apple"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:backgroundTint="@null"
-        android:background="@drawable/options_register_button"
-        android:layout_marginTop="10dp" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
