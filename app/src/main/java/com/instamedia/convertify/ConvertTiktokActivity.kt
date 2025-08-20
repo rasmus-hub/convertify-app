@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
@@ -27,7 +29,8 @@ import java.io.IOException
 class ConvertTiktokActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
-    private val flaskUrl = "http://192.168.1.15:5000/tiktok"  // Cambia según IP local
+    private val apiUrl = "${BuildConfig.API_BASE_URL}/tiktok"
+    private val apiKey = BuildConfig.API_KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +64,7 @@ class ConvertTiktokActivity : AppCompatActivity() {
         convertBtn.setOnClickListener {
             val urlText = editTextUrl.text.toString()
             if (urlText.equals("")) {
-                Toast.makeText(this, "Por favor ingresa una URL", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please, enter a valid URL", Toast.LENGTH_SHORT).show()
             } else {
                 enviarUrlAlServidor(urlText)
             }
@@ -74,14 +77,15 @@ class ConvertTiktokActivity : AppCompatActivity() {
 
         val body = RequestBody.create("application/json".toMediaTypeOrNull(), json.toString())
         val request = Request.Builder()
-            .url(flaskUrl)
+            .url(apiUrl)
+            .addHeader("x-api-key", apiKey)
             .post(body)
             .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Toast.makeText(this@ConvertTiktokActivity, "Error de conexión", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ConvertTiktokActivity, "Connection with server failed, try again", Toast.LENGTH_SHORT).show()
                 }
                 Log.e("Convertify", "Error: ${e.message}")
             }
@@ -95,9 +99,11 @@ class ConvertTiktokActivity : AppCompatActivity() {
                     val textVideoTitle = findViewById<TextView>(R.id.textVideoTitle)
                     val buttonSelectedFormat = findViewById<Button>(R.id.buttonChangeFormat)
 
+                    Log.d("Convertify", "Media URL recibida: $videoUrl")
+
                     if (videoUrl != null) {
                         runOnUiThread {
-                            textVideoTitle.text = "Video listo: $title"
+                            textVideoTitle.text = "Video title: $title"
 
                             val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
                             val uri = Uri.parse(videoUrl)
@@ -105,10 +111,11 @@ class ConvertTiktokActivity : AppCompatActivity() {
                             val isMp4  = buttonSelectedFormat.text == "MP4"
                             val format = if (isMp4) "mp4" else "mp3"
                             val mimeType = "video/$format"
-                            val fileName = "video_convertify_${System.currentTimeMillis()}.$format"
+                            val fileName = if (isMp4) "video_convertify_${System.currentTimeMillis()}.$format"
+                                else "audio_convertify_${System.currentTimeMillis()}.$format"
 
                             val request = DownloadManager.Request(uri)
-                                .setTitle("Descargando video")
+                                .setTitle("Downloading resource")
                                 .setDescription(title)
                                 .setMimeType(mimeType)
                                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
@@ -116,20 +123,62 @@ class ConvertTiktokActivity : AppCompatActivity() {
                                 .setAllowedOverMetered(true)
                                 .setAllowedOverRoaming(true)
 
-                            downloadManager.enqueue(request)
+                            val downloadId = downloadManager.enqueue(request)
+
+                            // Mostrar barra de progreso
+                            val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+                            progressBar.progress = 0
+                            progressBar.max = 100
+                            progressBar.visibility = View.VISIBLE
+
+                            Thread {
+                                var downloading = true
+                                while (downloading) {
+                                    val query = DownloadManager.Query().setFilterById(downloadId)
+                                    val cursor = downloadManager.query(query)
+
+                                    if (cursor != null && cursor.moveToFirst()) {
+                                        val bytesDownloaded = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR))
+                                        val bytesTotal = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
+
+                                        if (bytesTotal > 0) {
+                                            val progress = ((bytesDownloaded * 100L) / bytesTotal).toInt()
+
+                                            runOnUiThread {
+                                                progressBar.progress = progress
+                                            }
+                                        }
+
+                                        val status = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS))
+                                        if (status == DownloadManager.STATUS_SUCCESSFUL || status == DownloadManager.STATUS_FAILED) {
+                                            downloading = false
+                                            runOnUiThread {
+                                                progressBar.visibility = View.GONE
+                                                if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                                                    Toast.makeText(baseContext, "Download complete", Toast.LENGTH_SHORT).show()
+                                                } else {
+                                                    Toast.makeText(baseContext, "Download error", Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
+                                        }
+                                    }
+                                    cursor?.close()
+                                    Thread.sleep(100)
+                                }
+                            }.start()
 
                             runOnUiThread {
-                                Toast.makeText(this@ConvertTiktokActivity, "Descarga iniciada", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@ConvertTiktokActivity, "Download started", Toast.LENGTH_SHORT).show()
                             }
                         }
                     } else {
                         runOnUiThread {
-                            Toast.makeText(this@ConvertTiktokActivity, "No se encontró el video", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@ConvertTiktokActivity, "No video found", Toast.LENGTH_SHORT).show()
                         }
                     }
                 } else {
                     runOnUiThread {
-                        Toast.makeText(this@ConvertTiktokActivity, "Respuesta inválida del servidor", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@ConvertTiktokActivity, "Invalid server response, try again", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

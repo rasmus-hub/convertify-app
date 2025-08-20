@@ -57,6 +57,7 @@
         android:padding="30dp">
 
         <EditText
+            android:id="@+id/editTextUrl"
             android:layout_width="500px"
             android:layout_height="wrap_content"
             android:hint="Facebook URL"
@@ -69,9 +70,10 @@
             android:scrollHorizontally="true"/>
 
         <Button
+            android:id="@+id/buttonChangeFormat"
             android:layout_width="150px"
             android:layout_height="wrap_content"
-            android:text="MP3"
+            android:text="MP4"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:backgroundTint="@null"
@@ -80,6 +82,7 @@
             android:layout_marginStart="5dp"/>
 
         <Button
+            android:id="@+id/buttonConvert"
             android:layout_width="200px"
             android:layout_height="wrap_content"
             android:text="Convert"

@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -19,12 +21,20 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_BASE_URL", "\"" + gradleLocalProperties(rootDir).getProperty("API_BASE_URL") + "\"")
+            buildConfigField("String", "API_KEY", "\"" + gradleLocalProperties(rootDir).getProperty("API_KEY") + "\"")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            buildConfigField("String", "API_BASE_URL", "\"" + gradleLocalProperties(rootDir).getProperty("API_BASE_URL") + "\"")
+            buildConfigField("String", "API_KEY", "\"" + gradleLocalProperties(rootDir).getProperty("API_KEY") + "\"")
         }
     }
     compileOptions {

@@ -38,8 +38,9 @@ class HomeActivity : AppCompatActivity() {
         val buttonYoutubeConvert = findViewById<LinearLayout>(R.id.btn_convert_youtube)
 
         buttonYoutubeConvert.setOnClickListener {
-            val intent = Intent(this, ConvertYoutubeActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(baseContext, "Platform not available", Toast.LENGTH_SHORT).show()
+            //val intent = Intent(this, ConvertYoutubeActivity::class.java)
+            //startActivity(intent)
         }
 
         val buttonTiktokConvert = findViewById<LinearLayout>(R.id.btn_convert_tiktok)
@@ -52,15 +53,17 @@ class HomeActivity : AppCompatActivity() {
         val buttonInstagramConvert = findViewById<LinearLayout>(R.id.btn_convert_instagram)
 
         buttonInstagramConvert.setOnClickListener {
-            val intent = Intent(this, ConvertInstagramActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(baseContext, "Platform not available", Toast.LENGTH_SHORT).show()
+            //val intent = Intent(this, ConvertInstagramActivity::class.java)
+            //startActivity(intent)
         }
 
         val buttonFacebookConvert = findViewById<LinearLayout>(R.id.btn_convert_facebook)
 
         buttonFacebookConvert.setOnClickListener {
-            val intent = Intent(this, ConvertFacebookActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(baseContext, "Platform not available", Toast.LENGTH_SHORT).show()
+            //val intent = Intent(this, ConvertFacebookActivity::class.java)
+            //startActivity(intent)
         }
     }
 }
