@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi, Gustavo"
+            android:text="Welcome"
             android:textSize="40px"
             android:textColor="@color/white"/>
 
@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="Search platform"
             android:textColorHint="@android:color/darker_gray"
+            android:textCursorDrawable="@drawable/custom_cursor"
             android:textSize="40px"
             android:padding="12dp"
             android:background="@drawable/input_bg"
@@ -247,32 +248,32 @@
         <ImageView
             android:id="@+id/btn_go_home"
             android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/home_icon"/>
 
         <ImageView
             android:id="@+id/btn_go_profile"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="60dp"
             android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/profile_icon"/>
 
         <ImageView
             android:id="@+id/btn_go_files"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="60dp"
             android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/files_icon"/>
 
         <ImageView
             android:id="@+id/btn_go_settings"
-            android:layout_marginStart="70dp"
+            android:layout_marginStart="60dp"
             android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/settings_icon"/>
     </LinearLayout>
 

@@ -1,168 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     android:background="@color/primaryColor">
 
     <!-- Header Ad -->
-    <LinearLayout
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:elevation="10dp">
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:elevation="10dp" />
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad_view_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
-    </LinearLayout>
-
-    <!-- Body -->
+    <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:padding="30dp"
-        android:layout_marginBottom="100dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Convert your video"
-            android:textSize="40px"
-            android:textColor="@color/white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Insert the url of youtube video"
-            android:textSize="65px"
-            android:textColor="@color/white"
-            android:paddingEnd="60dp"
-            app:fontVariationSettings="'wght' 900"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:padding="30dp">
 
-        <EditText
-            android:id="@+id/editTextUrl"
-            android:layout_width="500px"
-            android:layout_height="wrap_content"
-            android:hint="Youtube URL"
-            android:textColorHint="@android:color/darker_gray"
-            android:textSize="40px"
-            android:padding="12dp"
-            android:background="@drawable/input_bg"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:scrollHorizontally="true"/>
-
-        <Button
-            android:id="@+id/buttonChangeFormat"
-            android:layout_width="150px"
-            android:layout_height="wrap_content"
-            android:text="MP4"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            app:backgroundTint="@null"
-            android:background="@drawable/input_bg"
-            android:padding="0dp"
-            android:layout_marginStart="5dp"/>
-
-        <Button
-            android:id="@+id/buttonConvert"
-            android:layout_width="200px"
-            android:layout_height="wrap_content"
-            android:text="Convert"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            app:backgroundTint="@null"
-            android:background="@drawable/input_bg"
-            android:padding="0dp"
-            android:layout_marginStart="5dp"/>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textVideoTitle"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="35dp"
-        android:text=""
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:textSize="35px"
-        app:fontVariationSettings="'wght' 700"/>
-
-    <!-- Footer Ad -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:elevation="10dp"
-        android:layout_marginBottom="60dp">
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad_view_container2"
+        <!-- Title Section -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
+            android:orientation="vertical"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Convert your video"
+                android:textSize="40px"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Insert the url of YouTube video"
+                android:textSize="65px"
+                android:textColor="@color/white"
+                app:fontVariationSettings="'wght' 900"/>
+        </LinearLayout>
+
+        <!-- Input Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp">
+
+            <EditText
+                android:id="@+id/editTextUrl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="YouTube URL"
+                android:textColorHint="@android:color/darker_gray"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="40px"
+                android:padding="12dp"
+                android:background="@drawable/input_bg"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:scrollHorizontally="true"/>
+
+            <Button
+                android:id="@+id/buttonChangeFormat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="150px"
+                android:text="MP4"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:backgroundTint="@null"
+                android:background="@drawable/input_bg"
+                android:padding="12dp"
+                android:layout_marginStart="8dp"/>
+
+            <Button
+                android:id="@+id/buttonConvert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="200px"
+                android:text="Convert"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:backgroundTint="@null"
+                android:background="@drawable/input_bg"
+                android:padding="12dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Progress Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:visibility="gone"
+                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/textVideoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="35px"
+                android:padding="16dp"
+                app:fontVariationSettings="'wght' 700"/>
+        </LinearLayout>
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
     </LinearLayout>
 
-    <!-- Footer -->
+    <!-- Footer Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view_container2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"
+        android:elevation="10dp" />
+
+    <!-- Footer Navigation -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:padding="20dp"
         android:background="@color/white"
         android:elevation="4dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/btn_go_home"
-            android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/home_icon"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/home_icon"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/btn_go_profile"
-            android:layout_marginStart="70dp"
-            android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/profile_icon"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="60dp"
+            android:src="@drawable/profile_icon"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/btn_go_files"
-            android:layout_marginStart="70dp"
-            android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/files_icon"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="60dp"
+            android:src="@drawable/files_icon"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/btn_go_settings"
-            android:layout_marginStart="70dp"
-            android:layout_gravity="center"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/settings_icon"/>
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="60dp"
+            android:src="@drawable/settings_icon"
+            android:layout_gravity="center"/>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>
