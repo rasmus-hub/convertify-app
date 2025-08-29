@@ -69,7 +69,9 @@
                 android:background="@drawable/input_bg"
                 android:singleLine="true"
                 android:ellipsize="end"
-                android:scrollHorizontally="true"/>
+                android:scrollHorizontally="true"
+                android:drawableLeft="@drawable/link_icon"
+                android:drawablePadding="10dp"/>
 
             <Button
                 android:id="@+id/buttonChangeFormat"
@@ -77,8 +79,10 @@
                 android:layout_height="wrap_content"
                 android:minWidth="150px"
                 android:text="MP4"
+                android:textSize="40px"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                app:fontVariationSettings="'wght' 700"
                 app:backgroundTint="@null"
                 android:background="@drawable/input_bg"
                 android:padding="12dp"
@@ -90,8 +94,10 @@
                 android:layout_height="wrap_content"
                 android:minWidth="200px"
                 android:text="Convert"
+                android:textSize="40px"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                app:fontVariationSettings="'wght' 700"
                 app:backgroundTint="@null"
                 android:background="@drawable/input_bg"
                 android:padding="12dp"
@@ -109,9 +115,9 @@
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
-                android:layout_height="8dp"
+                android:layout_height="15dp"
                 android:visibility="gone"
-                android:progressDrawable="@android:drawable/progress_horizontal"
+                android:progressDrawable="@drawable/custom_progress_bar_horizontal"
                 android:layout_marginBottom="16dp"/>
 
             <TextView
