@@ -59,10 +59,11 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.10.1")  // Compatible con AGP 8.1.4
+    implementation("androidx.core:core-ktx:1.9.0")  // Compatible con AGP 8.1.4
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("com.google.android.gms:play-services-ads:22.6.0")  // Compatible
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))  // Compatible

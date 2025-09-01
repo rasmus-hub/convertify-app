@@ -44,11 +44,6 @@ class ConvertTiktokActivity : AppCompatActivity() {
         val adRequest2 = AdRequest.Builder().build()
         mAdView2.loadAd(adRequest2)
 
-        val goToHome = findViewById<ImageView>(R.id.btn_go_home)
-        goToHome.setOnClickListener {
-            finish()
-        }
-
         val editTextUrl = findViewById<EditText>(R.id.editTextUrl)
         val buttonChangeFormat = findViewById<Button>(R.id.buttonChangeFormat)
         val convertBtn = findViewById<Button>(R.id.buttonConvert)
@@ -68,6 +63,39 @@ class ConvertTiktokActivity : AppCompatActivity() {
             } else {
                 enviarUrlAlServidor(urlText)
             }
+        }
+
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation() {
+        // Botón Home
+        val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
+        btnGoHome.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Perfil
+        val btnGoProfile = findViewById<ImageView>(R.id.btn_go_profile)
+        btnGoProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Archivos
+        val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
+        btnGoFiles.setOnClickListener {
+            val intent = Intent(this, FilesActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Configuración
+        val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
+        btnGoSettings.setOnClickListener {
+            Toast.makeText(baseContext, "Settings section not available yet", Toast.LENGTH_SHORT).show()
+            // val intent = Intent(this, SettingsActivity::class.java)
+            // startActivity(intent)
         }
     }
 
@@ -96,10 +124,9 @@ class ConvertTiktokActivity : AppCompatActivity() {
                     val jsonResponse = JSONObject(responseBody)
                     val videoUrl = jsonResponse.optString("video_url", "")
                     val title = jsonResponse.optString("title", "")
+                    val author = jsonResponse.optString("author", "")
                     val textVideoTitle = findViewById<TextView>(R.id.textVideoTitle)
                     val buttonSelectedFormat = findViewById<Button>(R.id.buttonChangeFormat)
-
-                    Log.d("Convertify", "Media URL recibida: $videoUrl")
 
                     if (videoUrl != null) {
                         runOnUiThread {
@@ -111,8 +138,8 @@ class ConvertTiktokActivity : AppCompatActivity() {
                             val isMp4  = buttonSelectedFormat.text == "MP4"
                             val format = if (isMp4) "mp4" else "mp3"
                             val mimeType = "video/$format"
-                            val fileName = if (isMp4) "video_convertify_${System.currentTimeMillis()}.$format"
-                                else "audio_convertify_${System.currentTimeMillis()}.$format"
+                            val fileName = if (isMp4) "video_convertify_tiktok_${author}_${System.currentTimeMillis()}.$format"
+                                else "audio_convertify_tiktok_${author}_${System.currentTimeMillis()}.$format"
 
                             val request = DownloadManager.Request(uri)
                                 .setTitle("Downloading resource")

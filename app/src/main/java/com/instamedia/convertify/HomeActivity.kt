@@ -82,9 +82,8 @@ class HomeActivity : AppCompatActivity() {
         // Botón Archivos (implementar según necesites)
         val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
         btnGoFiles.setOnClickListener {
-            Toast.makeText(baseContext, "Files section not available yet", Toast.LENGTH_SHORT).show()
-            // val intent = Intent(this, FilesActivity::class.java)
-            // startActivity(intent)
+            val intent = Intent(this, FilesActivity::class.java)
+            startActivity(intent)
         }
 
         // Botón Configuración (implementar según necesites)

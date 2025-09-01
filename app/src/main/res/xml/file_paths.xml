@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Archivos en el directorio de Downloads -->
+    <external-path name="downloads" path="Download/" />
+
+    <!-- Archivos en el directorio de Movies -->
+    <external-path name="movies" path="Movies/" />
+
+    <!-- Archivos en el directorio DCIM -->
+    <external-path name="dcim" path="DCIM/" />
+
+    <!-- Archivos en el directorio raíz del almacenamiento externo -->
+    <external-path name="external" path="." />
+
+    <!-- Archivos en el directorio de la aplicación -->
+    <external-files-path name="app_files" path="." />
+</paths>
