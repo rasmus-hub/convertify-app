@@ -103,13 +103,33 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-        // Navegar a Home
+        // Botón Home (ya estamos en Home, no hacer nada o refrescar)
         val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
         btnGoHome.setOnClickListener {
-            finish() // Regresar al Home
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
         }
 
-        // Los otros botones de navegación pueden implementarse según necesites
+        // Botón Perfil
+        val btnGoProfile = findViewById<ImageView>(R.id.btn_go_profile)
+        btnGoProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Archivos
+        val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
+        btnGoFiles.setOnClickListener {
+            val intent = Intent(this, FilesActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Configuración
+        val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
+        btnGoSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showChangePasswordDialog() {

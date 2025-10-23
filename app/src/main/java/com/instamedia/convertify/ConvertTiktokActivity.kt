@@ -69,7 +69,7 @@ class ConvertTiktokActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigation() {
-        // Botón Home
+        // Botón Home (ya estamos en Home, no hacer nada o refrescar)
         val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
         btnGoHome.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -93,9 +93,8 @@ class ConvertTiktokActivity : AppCompatActivity() {
         // Botón Configuración
         val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
         btnGoSettings.setOnClickListener {
-            Toast.makeText(baseContext, "Settings section not available yet", Toast.LENGTH_SHORT).show()
-            // val intent = Intent(this, SettingsActivity::class.java)
-            // startActivity(intent)
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 

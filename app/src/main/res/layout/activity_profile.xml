@@ -168,7 +168,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:padding="20dp"
-        android:background="@color/white"
+        android:background="@drawable/footer_navigation"
         android:elevation="4dp"
         android:gravity="center_horizontal">
 

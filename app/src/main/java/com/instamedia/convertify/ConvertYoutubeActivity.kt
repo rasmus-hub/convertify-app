@@ -43,13 +43,6 @@ class ConvertYoutubeActivity : AppCompatActivity() {
         val adRequest2 = AdRequest.Builder().build()
         mAdView2.loadAd(adRequest2)
 
-        val goToHome = findViewById<ImageView>(R.id.btn_go_home)
-
-        goToHome.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
-
         val editTextUrl = findViewById<EditText>(R.id.editTextUrl)
         val buttonChangeFormat = findViewById<Button>(R.id.buttonChangeFormat)
         val convertBtn = findViewById<Button>(R.id.buttonConvert)
@@ -69,6 +62,38 @@ class ConvertYoutubeActivity : AppCompatActivity() {
             } else {
                 enviarUrlAlServidor(urlText)
             }
+        }
+
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation() {
+        // Botón Home (ya estamos en Home, no hacer nada o refrescar)
+        val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
+        btnGoHome.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Perfil
+        val btnGoProfile = findViewById<ImageView>(R.id.btn_go_profile)
+        btnGoProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Archivos
+        val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
+        btnGoFiles.setOnClickListener {
+            val intent = Intent(this, FilesActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Botón Configuración
+        val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
+        btnGoSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -458,27 +458,32 @@ class FilesActivity : AppCompatActivity(), FilesAdapter.OnItemClickListener, Fil
     }
 
     private fun setupBottomNavigation() {
-        val btnGoHome: ImageView = findViewById(R.id.btn_go_home)
+        // Botón Home (ya estamos en Home, no hacer nada o refrescar)
+        val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
         btnGoHome.setOnClickListener {
-            val intent = Intent(this@FilesActivity, HomeActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
 
-        val btnGoProfile: ImageView = findViewById(R.id.btn_go_profile)
+        // Botón Perfil
+        val btnGoProfile = findViewById<ImageView>(R.id.btn_go_profile)
         btnGoProfile.setOnClickListener {
-            val intent = Intent(this@FilesActivity, ProfileActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
 
-        val btnGoFiles: ImageView = findViewById(R.id.btn_go_files)
+        // Botón Archivos
+        val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
         btnGoFiles.setOnClickListener {
-            // Ya estamos en Files, refrescar la vista
-            loadConvertifyFiles()
+            val intent = Intent(this, FilesActivity::class.java)
+            startActivity(intent)
         }
 
-        val btnGoSettings: ImageView = findViewById(R.id.btn_go_settings)
+        // Botón Configuración
+        val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
         btnGoSettings.setOnClickListener {
-            Toast.makeText(baseContext, "Settings section not available yet", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 }

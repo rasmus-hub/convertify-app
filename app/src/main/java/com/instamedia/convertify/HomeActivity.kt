@@ -69,29 +69,28 @@ class HomeActivity : AppCompatActivity() {
         // Botón Home (ya estamos en Home, no hacer nada o refrescar)
         val btnGoHome = findViewById<ImageView>(R.id.btn_go_home)
         btnGoHome.setOnClickListener {
-            // Ya estamos en Home, no hacer nada o podrías refrescar la vista
+            // Ya estamos en Home
         }
 
-        // Botón Perfil - NUEVA FUNCIONALIDAD
+        // Botón Perfil
         val btnGoProfile = findViewById<ImageView>(R.id.btn_go_profile)
         btnGoProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
 
-        // Botón Archivos (implementar según necesites)
+        // Botón Archivos
         val btnGoFiles = findViewById<ImageView>(R.id.btn_go_files)
         btnGoFiles.setOnClickListener {
             val intent = Intent(this, FilesActivity::class.java)
             startActivity(intent)
         }
 
-        // Botón Configuración (implementar según necesites)
+        // Botón Configuración
         val btnGoSettings = findViewById<ImageView>(R.id.btn_go_settings)
         btnGoSettings.setOnClickListener {
-            Toast.makeText(baseContext, "Settings section not available yet", Toast.LENGTH_SHORT).show()
-            // val intent = Intent(this, SettingsActivity::class.java)
-            // startActivity(intent)
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 
